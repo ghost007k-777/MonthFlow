@@ -1,24 +1,51 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { LayoutDashboard, Search, Plus, Download, Upload } from 'lucide-react';
+import { LayoutDashboard, Search, Plus, Download, Upload, Cloud, CloudOff, Loader2 } from 'lucide-react';
 import TimelineBoard from './components/TimelineBoard';
 import TaskModal from './components/TaskModal';
 import { Task, AppData, TaskStatus, TaskCategory } from './types';
 import { INITIAL_DATA } from './constants';
+import { loadDataFromFirestore, saveDataToFirestore } from './firebase';
 
 const App: React.FC = () => {
-  // Load initial state from localStorage if available
-  const [tasks, setTasks] = useState<Task[]>(() => {
-    const saved = localStorage.getItem('monthflow_tasks');
-    return saved ? JSON.parse(saved) : INITIAL_DATA.tasks;
-  });
+  const [tasks, setTasks] = useState<Task[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
+  const [isSynced, setIsSynced] = useState(false);
+  const [isSaving, setIsSaving] = useState(false);
+
+  // Load from Firestore on mount
+  useEffect(() => {
+    const loadData = async () => {
+      setIsLoading(true);
+      const cloudData = await loadDataFromFirestore();
+      if (cloudData && cloudData.tasks) {
+        setTasks(cloudData.tasks);
+        setIsSynced(true);
+      } else {
+        // Fallback to localStorage or initial data
+        const saved = localStorage.getItem('monthflow_tasks');
+        setTasks(saved ? JSON.parse(saved) : INITIAL_DATA.tasks);
+      }
+      setIsLoading(false);
+    };
+    loadData();
+  }, []);
+
+  // Save to Firestore and localStorage when tasks change
+  useEffect(() => {
+    if (isLoading || tasks.length === 0) return;
+
+    const saveData = async () => {
+      setIsSaving(true);
+      localStorage.setItem('monthflow_tasks', JSON.stringify(tasks));
+      const success = await saveDataToFirestore({ year: 2026, tasks });
+      setIsSynced(success);
+      setIsSaving(false);
+    };
+    saveData();
+  }, [tasks, isLoading]);
 
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [editingTask, setEditingTask] = useState<Task | null>(null);
-
-  // Auto-save whenever tasks change
-  useEffect(() => {
-    localStorage.setItem('monthflow_tasks', JSON.stringify(tasks));
-  }, [tasks]);
 
   // Filters
   const [searchText, setSearchText] = useState('');
@@ -93,6 +120,17 @@ const App: React.FC = () => {
     if (fileInputRef.current) fileInputRef.current.value = '';
   };
 
+  if (isLoading) {
+    return (
+      <div className="min-h-screen flex items-center justify-center bg-slate-50">
+        <div className="text-center">
+          <Loader2 className="w-12 h-12 animate-spin text-blue-600 mx-auto mb-4" />
+          <p className="text-slate-600 font-medium">데이터를 불러오는 중...</p>
+        </div>
+      </div>
+    );
+  }
+
   return (
     <div className="min-h-screen text-slate-900 p-6 md:p-12 max-w-[1920px] mx-auto bg-slate-50/50">
       {/* Header */}
@@ -108,7 +146,22 @@ const App: React.FC = () => {
               </h1>
             </div>
           </div>
-          <p className="text-slate-500 font-medium text-lg ml-1">CKD 본사 및 영업본부 2026 연간 로드맵</p>
+          <p className="text-slate-500 font-medium text-lg ml-1 flex items-center gap-2">
+            CKD 본사 및 영업본부 2026 연간 로드맵
+            {isSaving ? (
+              <span className="flex items-center gap-1 text-blue-500 text-sm">
+                <Loader2 className="w-4 h-4 animate-spin" /> 저장 중...
+              </span>
+            ) : isSynced ? (
+              <span className="flex items-center gap-1 text-emerald-500 text-sm">
+                <Cloud className="w-4 h-4" /> 동기화됨
+              </span>
+            ) : (
+              <span className="flex items-center gap-1 text-orange-500 text-sm">
+                <CloudOff className="w-4 h-4" /> 오프라인
+              </span>
+            )}
+          </p>
         </div>
 
         <div className="flex flex-wrap items-center gap-4 bg-white/60 p-2 rounded-3xl border border-white/50 backdrop-blur-md shadow-xl shadow-slate-200/50">
