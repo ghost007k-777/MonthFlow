@@ -1,0 +1,5 @@
+{
+  "name": "MonthFlow",
+  "description": "A visual monthly task schedule board for annual planning, featuring lane-based timeline visualization, filtering, and JSON data management.",
+  "requestFramePermissions": []
+}

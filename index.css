@@ -1,0 +1,53 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+    :root {
+        --color-bg-primary: #ffffff;
+        /* White */
+        --color-bg-secondary: #f8fafc;
+        /* Slate 50 */
+        --color-accent: #f59e0b;
+        /* Amber 500 */
+        --color-text-primary: #0f172a;
+        /* Slate 900 */
+        --color-text-secondary: #64748b;
+        /* Slate 500 */
+        --glass-border: rgba(255, 255, 255, 0.4);
+        --glass-bg: rgba(255, 255, 255, 0.7);
+    }
+
+    body {
+        @apply bg-slate-50 text-slate-900 font-sans antialiased selection:bg-amber-100 selection:text-amber-900;
+        background-image: radial-gradient(circle at 50% 0%, #ffffff 0%, #f1f5f9 100%);
+        min-height: 100vh;
+    }
+}
+
+@layer components {
+    .glass-panel {
+        @apply bg-white/70 backdrop-blur-xl border border-white/60 shadow-xl shadow-slate-200/50;
+    }
+
+    .glass-card {
+        @apply bg-white/60 backdrop-blur-sm border border-white/50 hover:bg-white/80 transition-all duration-300 shadow-sm hover:shadow-md;
+    }
+
+    .premium-gradient-text {
+        @apply bg-clip-text text-transparent bg-gradient-to-r from-slate-900 via-slate-700 to-slate-900;
+    }
+
+    .scroll-premium::-webkit-scrollbar {
+        height: 8px;
+        width: 8px;
+    }
+
+    .scroll-premium::-webkit-scrollbar-track {
+        @apply bg-slate-100;
+    }
+
+    .scroll-premium::-webkit-scrollbar-thumb {
+        @apply bg-slate-300 rounded-full hover:bg-slate-400;
+    }
+}
