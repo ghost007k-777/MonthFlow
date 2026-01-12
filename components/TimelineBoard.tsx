@@ -73,7 +73,7 @@ const TimelineBoard: React.FC<TimelineBoardProps> = ({
   }, [tasks, filterText, filterStatus, filterCategory]);
 
   return (
-    <div className="w-full timeline-wrapper custom-scrollbar rounded-3xl border border-slate-200 bg-white/50 backdrop-blur-md overflow-hidden shadow-2xl shadow-slate-200/50">
+    <div className="w-full timeline-wrapper custom-scrollbar rounded-3xl border border-slate-200 bg-white/50 backdrop-blur-md overflow-x-auto shadow-2xl shadow-slate-200/50">
       <div className="min-w-[1000px] relative">
         {/* Month Headers */}
         <div className="grid grid-cols-12 sticky top-0 z-30">
