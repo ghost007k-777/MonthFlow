@@ -176,6 +176,27 @@ const App: React.FC = () => {
             <Search className="absolute left-4 top-3.5 text-slate-400 w-5 h-5 group-focus-within:text-blue-500 transition-colors" />
           </div>
 
+          {/* 영업사무소 점검 일정 섹션 */}
+          <div className="flex items-center gap-3 px-4 py-2 bg-gradient-to-r from-blue-50 to-indigo-50 rounded-2xl border border-blue-200/50">
+            <span className="text-sm font-bold text-blue-700 whitespace-nowrap">영업사무소 점검 일정</span>
+            <div className="flex items-center gap-1.5">
+              {['1분기', '2분기', '3분기', '4분기'].map((quarter, index) => (
+                <button
+                  key={quarter}
+                  onClick={() => {
+                    // 분기별 월 범위로 스크롤 또는 필터
+                    const startMonth = index * 3 + 1;
+                    const monthElement = document.querySelector(`[data-month="${startMonth}"]`);
+                    monthElement?.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                  }}
+                  className="px-3 py-1.5 text-xs font-semibold text-blue-600 bg-white hover:bg-blue-600 hover:text-white rounded-lg border border-blue-200 hover:border-blue-600 transition-all duration-200 shadow-sm hover:shadow-md active:scale-95"
+                >
+                  {quarter}
+                </button>
+              ))}
+            </div>
+          </div>
+
           <div className="w-px h-8 bg-slate-200 mx-1 hidden sm:block"></div>
 
           <button
