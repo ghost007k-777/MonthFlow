@@ -213,8 +213,36 @@ const App: React.FC = () => {
         </div>
       </header>
 
-      {/* Sales Office Inspection Schedule Section */}
-      <div className="mb-8 flex justify-end animate-in slide-in-from-top-7 duration-700 delay-50">
+      {/* Filter Bar + Inspection Schedule (Same Row) */}
+      <div className="mb-8 flex flex-wrap items-center justify-between gap-4 animate-in slide-in-from-top-7 duration-700 delay-50">
+        {/* Left: Filters */}
+        <div className="flex flex-wrap items-center gap-4">
+          <div className="flex items-center gap-3 glass-panel px-5 py-2.5 rounded-2xl bg-white border border-slate-200">
+            <span className="text-xs font-bold text-slate-400 uppercase tracking-wider">진행 상태</span>
+            <select
+              value={filterStatus}
+              onChange={(e) => setFilterStatus(e.target.value)}
+              className="bg-transparent text-sm font-bold text-slate-700 outline-none cursor-pointer hover:text-blue-600 transition-colors [&>option]:bg-white [&>option]:text-slate-700"
+            >
+              <option value="all">모든 상태</option>
+              {Object.values(TaskStatus).map(s => <option key={s} value={s}>{s}</option>)}
+            </select>
+          </div>
+
+          <div className="flex items-center gap-3 glass-panel px-5 py-2.5 rounded-2xl bg-white border border-slate-200">
+            <span className="text-xs font-bold text-slate-400 uppercase tracking-wider">카테고리</span>
+            <select
+              value={filterCategory}
+              onChange={(e) => setFilterCategory(e.target.value)}
+              className="bg-transparent text-sm font-bold text-slate-700 outline-none cursor-pointer hover:text-blue-600 transition-colors [&>option]:bg-white [&>option]:text-slate-700"
+            >
+              <option value="all">모든 카테고리</option>
+              {Object.values(TaskCategory).map(c => <option key={c} value={c}>{c}</option>)}
+            </select>
+          </div>
+        </div>
+
+        {/* Right: Inspection Schedule */}
         <div className="inline-flex items-center gap-4 bg-white/80 p-2.5 rounded-3xl border border-white/50 backdrop-blur-md shadow-lg shadow-slate-200/50">
           <div className="flex items-center gap-4 px-6 py-3 bg-gradient-to-r from-blue-50 to-indigo-50 rounded-2xl border border-blue-200/50">
             <span className="text-base font-bold text-blue-700 whitespace-nowrap">영업사무소 점검 일정</span>
@@ -223,7 +251,6 @@ const App: React.FC = () => {
                 <button
                   key={quarter}
                   onClick={() => {
-                    // 분기별 월 범위로 스크롤 또는 필터
                     const startMonth = index * 3 + 1;
                     const monthElement = document.querySelector(`[data-month="${startMonth}"]`);
                     monthElement?.scrollIntoView({ behavior: 'smooth', block: 'center' });
@@ -235,33 +262,6 @@ const App: React.FC = () => {
               ))}
             </div>
           </div>
-        </div>
-      </div>
-
-      {/* Filter Bar */}
-      <div className="mb-8 flex flex-wrap items-center gap-4 animate-in slide-in-from-top-8 duration-700 delay-100">
-        <div className="flex items-center gap-3 glass-panel px-5 py-2.5 rounded-2xl bg-white border border-slate-200">
-          <span className="text-xs font-bold text-slate-400 uppercase tracking-wider">진행 상태</span>
-          <select
-            value={filterStatus}
-            onChange={(e) => setFilterStatus(e.target.value)}
-            className="bg-transparent text-sm font-bold text-slate-700 outline-none cursor-pointer hover:text-blue-600 transition-colors [&>option]:bg-white [&>option]:text-slate-700"
-          >
-            <option value="all">모든 상태</option>
-            {Object.values(TaskStatus).map(s => <option key={s} value={s}>{s}</option>)}
-          </select>
-        </div>
-
-        <div className="flex items-center gap-3 glass-panel px-5 py-2.5 rounded-2xl bg-white border border-slate-200">
-          <span className="text-xs font-bold text-slate-400 uppercase tracking-wider">카테고리</span>
-          <select
-            value={filterCategory}
-            onChange={(e) => setFilterCategory(e.target.value)}
-            className="bg-transparent text-sm font-bold text-slate-700 outline-none cursor-pointer hover:text-blue-600 transition-colors [&>option]:bg-white [&>option]:text-slate-700"
-          >
-            <option value="all">모든 카테고리</option>
-            {Object.values(TaskCategory).map(c => <option key={c} value={c}>{c}</option>)}
-          </select>
         </div>
       </div>
 
