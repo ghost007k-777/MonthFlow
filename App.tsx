@@ -281,6 +281,9 @@ const App: React.FC = () => {
             <div>
               <h3 className="text-lg font-bold text-slate-800 flex items-center gap-2">
                 📊 연간 업무 목표 달성률
+                <span className="text-sm font-medium text-blue-500 bg-blue-50 px-2 py-0.5 rounded-lg">
+                  (현재 진행중인 업무 {tasks.filter(t => t.status === TaskStatus.IN_PROGRESS).length}개)
+                </span>
               </h3>
               <p className="text-sm text-slate-500 font-medium mt-1">
                 전체 계획된 업무 대비 완료된 업무의 진행 상황입니다.
