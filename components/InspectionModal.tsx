@@ -35,9 +35,14 @@ const InspectionModal: React.FC<InspectionModalProps> = ({ isOpen, onClose }) =>
 
                 {/* Header */}
                 <div className="px-4 py-4 md:px-8 md:py-5 border-b border-slate-100 flex items-center justify-between bg-slate-50/50">
-                    <h2 className="text-lg md:text-2xl font-bold text-slate-800 flex items-center gap-2">
-                        📋 영업사무소 점검 일정 (1분기)
-                    </h2>
+                    <div className="flex flex-col md:flex-row md:items-center gap-2 md:gap-4">
+                        <h2 className="text-lg md:text-2xl font-bold text-slate-800 flex items-center gap-2">
+                            📋 영업사무소 점검 일정 (1분기)
+                        </h2>
+                        <span className="inline-flex items-center px-3 py-1 rounded-lg bg-red-50 text-red-600 text-sm font-bold border border-red-100 whitespace-nowrap">
+                            교육주제 - 넘어진 사고 예방
+                        </span>
+                    </div>
                     <button
                         onClick={onClose}
                         className="p-2 -mr-2 text-slate-400 hover:text-slate-600 hover:bg-slate-100 rounded-full transition-colors"

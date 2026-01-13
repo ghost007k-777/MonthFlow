@@ -18,6 +18,11 @@ export enum TaskPriority {
   LOW = '천천히'
 }
 
+export enum TaskType {
+  PERIODIC = '주기적인 업무',
+  SPECIAL = '특별 업무'
+}
+
 export interface Task {
   id: string;
   title: string;
@@ -25,6 +30,7 @@ export interface Task {
   endMonth: number;
   owner: string;
   status: TaskStatus;
+  type: TaskType;
   category: TaskCategory;
   color: string;
   priority: TaskPriority;

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { X, Edit2, Trash2, Calendar, User, Clock, FileText, AlertTriangle } from 'lucide-react';
-import { Task, TaskStatus, TaskCategory, TaskPriority } from '../types';
+import { Task, TaskStatus, TaskCategory, TaskPriority, TaskType } from '../types';
 import { MONTHS } from '../constants';
 
 interface TaskModalProps {
@@ -20,6 +20,7 @@ const TaskModal: React.FC<TaskModalProps> = ({ isOpen, onClose, onSave, onDelete
     endMonth: 1,
     owner: '',
     status: TaskStatus.SCHEDULED,
+    type: TaskType.PERIODIC,
     category: TaskCategory.SAFETY,
     color: '#3b82f6',
     priority: TaskPriority.NORMAL,
@@ -38,6 +39,7 @@ const TaskModal: React.FC<TaskModalProps> = ({ isOpen, onClose, onSave, onDelete
         endMonth: 1,
         owner: '',
         status: TaskStatus.SCHEDULED,
+        type: TaskType.PERIODIC,
         category: TaskCategory.SAFETY,
         color: '#3b82f6',
         priority: TaskPriority.NORMAL,
@@ -185,6 +187,31 @@ const TaskModal: React.FC<TaskModalProps> = ({ isOpen, onClose, onSave, onDelete
                   onChange={(e) => handleChange('description', e.target.value)}
                   className="w-full bg-slate-50 border border-slate-200 text-slate-700 rounded-xl p-4 mt-1 focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 outline-none font-medium placeholder-slate-400 resize-none transition-all"
                 />
+              </div>
+
+              <div className="mb-4">
+                <label className="text-xs font-bold text-slate-400 uppercase ml-1 tracking-wider">업무 유형</label>
+                <div className="flex gap-3 mt-1">
+                  {Object.values(TaskType).map((type) => (
+                    <label
+                      key={type}
+                      className={`flex-1 flex items-center justify-center gap-2 p-3 rounded-xl border cursor-pointer transition-all ${formData.type === type
+                          ? 'bg-blue-50 border-blue-200 text-blue-700 font-bold ring-1 ring-blue-200'
+                          : 'bg-slate-50 border-slate-200 text-slate-600 hover:bg-slate-100 font-medium'
+                        }`}
+                    >
+                      <input
+                        type="radio"
+                        name="taskType"
+                        value={type}
+                        checked={formData.type === type}
+                        onChange={(e) => handleChange('type', e.target.value as TaskType)}
+                        className="w-4 h-4 text-blue-600 border-gray-300 focus:ring-blue-500"
+                      />
+                      {type}
+                    </label>
+                  ))}
+                </div>
               </div>
 
               <div className="grid grid-cols-2 gap-4">
