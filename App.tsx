@@ -274,6 +274,39 @@ const App: React.FC = () => {
         </div>
       </div>
 
+      {/* Completion Rate Progress Bar */}
+      <div className="mb-8 animate-in slide-in-from-top-8 duration-700 delay-100 w-full">
+        <div className="bg-white/80 backdrop-blur-md rounded-3xl p-6 border border-white/50 shadow-lg shadow-slate-200/50">
+          <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-3">
+            <div>
+              <h3 className="text-lg font-bold text-slate-800 flex items-center gap-2">
+                📊 연간 업무 목표 달성률
+              </h3>
+              <p className="text-sm text-slate-500 font-medium mt-1">
+                전체 계획된 업무 대비 완료된 업무의 진행 상황입니다.
+              </p>
+            </div>
+            <div className="flex items-end gap-2">
+              <span className="text-4xl font-black text-blue-600 tracking-tight">
+                {Math.round((tasks.filter(t => t.status === TaskStatus.COMPLETED).length / Math.max(tasks.length, 1)) * 100)}%
+              </span>
+              <span className="text-slate-400 font-bold mb-1.5">
+                ( {tasks.filter(t => t.status === TaskStatus.COMPLETED).length} / {tasks.length} 건 )
+              </span>
+            </div>
+          </div>
+
+          <div className="h-4 bg-slate-100 rounded-full overflow-hidden shadow-inner ring-1 ring-slate-200/50">
+            <div
+              className="h-full bg-gradient-to-r from-blue-500 via-indigo-500 to-purple-500 transition-all duration-1000 ease-out relative"
+              style={{ width: `${Math.round((tasks.filter(t => t.status === TaskStatus.COMPLETED).length / Math.max(tasks.length, 1)) * 100)}%` }}
+            >
+              <div className="absolute inset-0 bg-white/20 animate-[shimmer_2s_infinite] grid place-items-center"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
       {/* Main Board */}
       <TimelineBoard
         tasks={tasks}
