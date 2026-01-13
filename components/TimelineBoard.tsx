@@ -143,23 +143,20 @@ const TimelineBoard: React.FC<TimelineBoardProps> = ({
 
                 {/* Content - grows on hover */}
                 <div className="flex flex-col h-full pl-2 overflow-hidden">
-                  <div className="flex items-center gap-1 mb-1 flex-wrap">
-                    <span className={`text-[9px] group-hover:text-[11px] transition-all px-1.5 py-0.5 rounded-full font-bold border ${getStatusBadgeColor(task.status)}`}>
+                  <div className="flex items-center gap-1 mb-0.5">
+                    <span className={`text-[8px] group-hover:text-[10px] transition-all px-1 py-0.5 rounded font-bold border ${getStatusBadgeColor(task.status)}`}>
                       {task.status}
-                    </span>
-                    <span className="text-[9px] group-hover:text-[11px] transition-all font-bold text-slate-400 uppercase tracking-wider bg-slate-100 px-1.5 py-0.5 rounded-full">
-                      {task.category}
                     </span>
                     {getPriorityBadge(task.priority)}
                   </div>
-                  <h4 className="font-bold text-slate-800 text-xs group-hover:text-sm transition-all leading-tight line-clamp-2 group-hover:line-clamp-none">
+                  <h4 className="font-bold text-slate-800 text-[11px] group-hover:text-sm transition-all leading-tight flex-1">
                     {task.title}
                   </h4>
-                  <div className="mt-auto pt-1">
-                    <span className="text-[10px] group-hover:text-xs transition-all text-slate-500 block">
+                  <div className="mt-auto">
+                    <span className="text-[9px] group-hover:text-xs transition-all text-slate-500 block truncate">
                       👤 {task.owner}
                     </span>
-                    <span className="text-[9px] group-hover:text-[11px] transition-all text-slate-400 font-mono hidden group-hover:block mt-1">
+                    <span className="text-[8px] group-hover:text-[10px] transition-all text-slate-400 font-mono hidden group-hover:block mt-0.5">
                       📅 {task.startMonth === task.endMonth ? `${task.startMonth}월` : `${task.startMonth}~${task.endMonth}월`}
                     </span>
                   </div>
