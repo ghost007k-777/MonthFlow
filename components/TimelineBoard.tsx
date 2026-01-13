@@ -117,7 +117,7 @@ const TimelineBoard: React.FC<TimelineBoardProps> = ({
         </div>
 
         {/* Tasks Layer */}
-        <div className="col-span-12 relative z-10 py-4 grid grid-cols-12 auto-rows-[80px] gap-y-2 px-1">
+        <div className="col-span-12 relative z-10 py-4 grid grid-cols-12 auto-rows-[100px] gap-y-2 px-1">
           {processedTasks.map(task => {
             // Determine transform origin based on position
             const getTransformOrigin = () => {
@@ -130,8 +130,8 @@ const TimelineBoard: React.FC<TimelineBoardProps> = ({
               <div
                 key={task.id}
                 onClick={() => onTaskClick(task)}
-                className={`relative group cursor-pointer mx-0.5 p-3 rounded-xl border transition-all duration-300 
-                  hover:scale-[1.15] hover:z-50 hover:shadow-2xl hover:p-4 ${getTransformOrigin()} ${getStatusColor(task.status)}`}
+                className={`relative group cursor-pointer mx-0.5 p-2 rounded-xl border transition-all duration-300 
+                  hover:scale-[1.3] hover:z-50 hover:shadow-2xl hover:p-3 ${getTransformOrigin()} ${getStatusColor(task.status)}`}
                 style={{
                   gridColumnStart: task.startMonth,
                   gridColumnEnd: task.endMonth + 1,
@@ -141,19 +141,19 @@ const TimelineBoard: React.FC<TimelineBoardProps> = ({
                 {/* Color Bar */}
                 <div className="absolute top-0 left-0 bottom-0 w-1.5 rounded-l-xl" style={{ backgroundColor: task.color }} />
 
-                {/* Content - grows on hover */}
-                <div className="flex flex-col h-full pl-2 overflow-hidden">
-                  <div className="flex items-center gap-1 mb-0.5">
-                    <span className={`text-[8px] group-hover:text-[10px] transition-all px-1 py-0.5 rounded font-bold border ${getStatusBadgeColor(task.status)}`}>
+                {/* Content */}
+                <div className="flex flex-col h-full pl-2 overflow-hidden group-hover:overflow-visible">
+                  <div className="flex items-center gap-1 mb-0.5 flex-wrap">
+                    <span className={`text-[8px] group-hover:text-[10px] transition-all px-1 py-0.5 rounded font-bold border whitespace-nowrap ${getStatusBadgeColor(task.status)}`}>
                       {task.status}
                     </span>
                     {getPriorityBadge(task.priority)}
                   </div>
-                  <h4 className="font-bold text-slate-800 text-[11px] group-hover:text-sm transition-all leading-tight flex-1">
+                  <h4 className="font-bold text-slate-800 text-[11px] group-hover:text-sm transition-all leading-tight line-clamp-2 group-hover:line-clamp-none">
                     {task.title}
                   </h4>
-                  <div className="mt-auto">
-                    <span className="text-[9px] group-hover:text-xs transition-all text-slate-500 block truncate">
+                  <div className="mt-auto pt-0.5">
+                    <span className="text-[9px] group-hover:text-xs transition-all text-slate-500 block">
                       👤 {task.owner}
                     </span>
                     <span className="text-[8px] group-hover:text-[10px] transition-all text-slate-400 font-mono hidden group-hover:block mt-0.5">
