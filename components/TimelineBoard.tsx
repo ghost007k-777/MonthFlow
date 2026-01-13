@@ -133,11 +133,8 @@ const TimelineBoard: React.FC<TimelineBoardProps> = ({
                     <h4 className="font-bold text-slate-800 text-sm leading-tight line-clamp-2" title={task.title}>{task.title}</h4>
                   </div>
 
-                  <div className="flex items-center gap-1.5 mt-2">
-                    <div className={`w-5 h-5 rounded-full flex items-center justify-center text-[10px] font-bold text-white shadow-sm`} style={{ backgroundColor: task.color }}>
-                      {task.owner[0]}
-                    </div>
-                    <span className="text-xs font-bold text-slate-500 truncate">{task.owner}</span>
+                  <div className="mt-auto pt-1">
+                    <span className="text-xs font-bold text-slate-500 truncate block">👤 {task.owner}</span>
                   </div>
                 </div>
               </div>
