@@ -11,22 +11,22 @@ const InspectionModal: React.FC<InspectionModalProps> = ({ isOpen, onClose }) =>
 
     const scheduleData = [
         { month: '1월', date: '15일(목)', time: '10시 ~ 12시', branch: '강북 사무소', manager: '이상기 부장', visitor: '김은정' },
-        { month: '1월', date: '19일(월)', time: '10시 ~ 12시', branch: '강릉 사무소', manager: '박상기 차장', visitor: '강규진' },
-        { month: '1월', date: '19일(월)', time: '14시 ~ 16시', branch: '원주 사무소', manager: '김정민 부장', visitor: '강규진' },
+        { month: '1월', date: '19일(월)', time: '10시 ~ 12시', branch: '강릉 사무소', manager: '박상기 차장', visitor: '강규찬' },
+        { month: '1월', date: '19일(월)', time: '14시 ~ 16시', branch: '원주 사무소', manager: '김정민 부장', visitor: '강규찬' },
         { month: '1월', date: '19일(월)', time: '10시 ~ 12시', branch: '전남 사무소', manager: '유상석 부장', visitor: '김민구' },
         { month: '1월', date: '19일(월)', time: '10시 ~ 12시', branch: '경북1 사무소\n경북2 사무소', manager: '이한규 부장', visitor: '김은정' },
         { month: '1월', date: '20일(화)', time: '10시 ~ 12시', branch: '경기1 사무소', manager: '정보식 부장', visitor: '김민구' },
         { month: '1월', date: '20일(화)', time: '14시 ~ 16시', branch: '경기2 사무소', manager: '백재웅 부장', visitor: '김민구' },
-        { month: '1월', date: '21일(수)', time: '10시 ~ 12시', branch: '제주 사무소', manager: '김현우 부장', visitor: '강규진' },
+        { month: '1월', date: '21일(수)', time: '10시 ~ 12시', branch: '제주 사무소', manager: '김현우 부장', visitor: '강규찬' },
         { month: '2월', date: '9일(월)', time: '10시 ~ 12시', branch: '경남 사무소', manager: '남선환 부장', visitor: '김민구' },
-        { month: '2월', date: '23일(월)', time: '10시 ~ 12시', branch: '충북 사무소', manager: '이재형 부장', visitor: '강규진' },
-        { month: '2월', date: '23일(월)', time: '14시 ~ 16시', branch: '충남 사무소', manager: '최순원 부장', visitor: '강규진' },
+        { month: '2월', date: '23일(월)', time: '10시 ~ 12시', branch: '충북 사무소', manager: '이재형 부장', visitor: '강규찬' },
+        { month: '2월', date: '23일(월)', time: '14시 ~ 16시', branch: '충남 사무소', manager: '최순원 부장', visitor: '강규찬' },
         { month: '2월', date: '23일(월)', time: '10시 ~ 12시', branch: '부산1 사무소\n부산2 사무소', manager: '편진근 부장', visitor: '김은정' },
         { month: '2월', date: '24일(화)', time: '10시 ~ 12시', branch: '전북 사무소', manager: '최창현 차장', visitor: '김민구' },
-        { month: '3월', date: '16일(월)', time: '10시 ~ 12시', branch: '중부 사무소', manager: '홍민표 부장', visitor: '강규진' },
+        { month: '3월', date: '16일(월)', time: '10시 ~ 12시', branch: '중부 사무소', manager: '홍민표 부장', visitor: '강규찬' },
         { month: '3월', date: '17일(화)', time: '10시 ~ 12시', branch: '서부 사무소', manager: '박종현 부장', visitor: '김은정' },
         { month: '3월', date: '17일(화)', time: '14시 ~ 16시', branch: '인천 사무소', manager: '김장민 부장', visitor: '김은정' },
-        { month: '3월', date: '23일(월)', time: '10시 ~ 12시', branch: '강남 사무소', manager: '이태희 부장\n김 훈 부장\n진기만 부장', visitor: '김민구\n강규진\n김은정' },
+        { month: '3월', date: '23일(월)', time: '10시 ~ 12시', branch: '강남 사무소', manager: '이태희 부장\n김 훈 부장\n진기만 부장', visitor: '김민구\n강규찬\n김은정' },
     ];
 
     return (
